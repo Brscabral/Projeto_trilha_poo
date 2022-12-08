@@ -14,6 +14,8 @@ private double media;
 
 BufferedReader bfr = new BufferedReader(new InputStreamReader(System.in));
 
+ArrayList<RegistraAluno> lista = new ArrayList<RegistraAluno>();
+
 private static int contador;
 
 public double getNotaMat() {
@@ -46,12 +48,9 @@ public double getMedia() {
 	return media;
 }
 
-
-
-
-
 public void cadastraAluno() throws IOException {
 
+	RegistraAluno alunoCad = new RegistraAluno();
 	
 	System.out.println("Digite seu nome:");
 	String nome = bfr.readLine();
@@ -73,15 +72,28 @@ public void cadastraAluno() throws IOException {
 	System.out.println("Digite sua nota de matematica:");
 	double notaMat = Integer.parseInt(bfr.readLine());
 	
-	setNome(nome);
-	setEndereco(endereco);
-	setIdade(idade);
-	setSexo(sexo);
-	setNotaGeo(notaGeo);
-	setNotaMat(notaMat);
-	setNotaPort(notaPort);
+	alunoCad.setNome(nome);
+	alunoCad.setEndereco(endereco);
+	alunoCad.setIdade(idade);
+	alunoCad.setSexo(sexo);
+	alunoCad.setNotaGeo(notaGeo);
+	alunoCad.setNotaMat(notaMat);
+	alunoCad.setNotaPort(notaPort);
+	
+	lista.add(alunoCad);
 }
 
+public void mostraAluno() {
+	for(int i=0; i<lista.size();i++) {
+		System.out.println("Aluno " + RegistraAluno.getContador()+ "Registrado com sucesso!");
+		System.out.println("Nome do aluno:"+ lista.get(i).getNome());
+		System.out.println("Sexo do aluno:"+ lista.get(i).getSexo());
+		System.out.println("Endereço do aluno: " + lista.get(i).getEndereco());
+		System.out.println("Idade do aluno: " + lista.get(i).getIdade());
+		System.out.println("Media do aluno: " + lista.get(i).getMedia());
+		System.out.println(" ");
+	}
+}
 
 
 
