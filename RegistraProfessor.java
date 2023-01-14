@@ -4,7 +4,8 @@ import java.util.ArrayList;
 public class RegistraProfessor extends Pessoas {
 private String matricula;
 private double salario;
-
+private int id;
+private static int cont;
 static BufferedReader bfr = new BufferedReader(new InputStreamReader(System.in));
 static ArrayList<RegistraProfessor> listaProf = new ArrayList<RegistraProfessor>();
 public String getMatricula() {
@@ -23,7 +24,7 @@ public void setSalario(double salario) {
 public static void cadastraProfessor() throws IOException {
 	
 	RegistraProfessor professores = new RegistraProfessor();
-	
+	int contador = incrementaContador();
 	System.out.println("Digite seu nome:");
 	String nomeProf = bfr.readLine();
 	
@@ -48,7 +49,32 @@ public static void cadastraProfessor() throws IOException {
 	professores.setSexo(sexoProf);
 	professores.setIdade(idadeProf);
 	professores.setSalario(salario);
+	professores.SetId(contador);
 	listaProf.add(professores);
+}
+
+public static void excluiProf() throws NumberFormatException, IOException {
+	int contador=0;
+	while(contador == 0) {
+
+			for(RegistraProfessor rp : listaProf) {
+				System.out.println("=========Lista de funcionarios cadastrados=========");
+				System.out.println("Nome do funcionario:"+ rp.getNome() + " Matricula: " + rp.getMatricula() + " ID: " + rp.getId() );
+				System.out.print("\n");
+				
+			}
+			System.out.println("Digite o id do funcionario que deseja remover da lista de cadastro");
+			int id = Integer.parseInt(bfr.readLine());
+			listaProf.remove(id);
+			
+			
+		System.out.println("Digite 2, caso queira voltar ao menu");
+		int teclado = Integer.parseInt(bfr.readLine());
+		if(teclado == 2) {
+			contador++;
+		}
+	}
+	
 }
 
 public static void mostraProfessores(){
@@ -77,7 +103,8 @@ public void mostraOpcao() throws IOException {
 	while(contador == 0) {
 		System.out.println("|Digite 1, caso queira cadastrar um professor        |");
 		System.out.println("|Digite 2, caso visualizar os professores cadastrados|");		
-		System.out.println("|Digite 3, caso queira voltar ao menu                |");
+		System.out.println("|Digite 3, caso queira Excluir um professor          |");
+		System.out.println("|Digite 4, caso queira voltar ao menu                |");
 		int tecladoProf = Integer.parseInt(bfr.readLine());
 		if(tecladoProf==1) {
 			RegistraProfessor.cadastraProfessor();
@@ -98,10 +125,29 @@ public void mostraOpcao() throws IOException {
 			}
 		}
 		if(tecladoProf ==3) {
+			RegistraProfessor.excluiProf();
+			contador++;
+		}
+		if(tecladoProf ==4) {
 			contador++;
 			System.out.println("\n\n");
 		}
 	}
+}
+public int getId() {
+	return id;
+}
+public void SetId(int contador) {
+	this.id = contador;
+}
+public static int getCont() {
+	return cont;
+}
+public static void setCont(int cont) {
+	RegistraProfessor.cont = cont;
+}
+public static int incrementaContador() {
+	return cont++;
 }
 }
 	

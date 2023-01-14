@@ -178,7 +178,7 @@ public class RegistraFuncionarioAdm extends Pessoas implements Funcionarios, Fad
 		funcionario.setSexo(sexoFun);
 		funcionario.setSalario(salarioFun);
 		funcionario.setHorario(horario);
-		funcionario.setId(contador+1);
+		funcionario.setId(contador);
 		funcionario.setServico(servico);
 		funcionario.setTurno(turno);
 		funcionario.setGratificacao(tempServ);
@@ -190,7 +190,7 @@ public class RegistraFuncionarioAdm extends Pessoas implements Funcionarios, Fad
 	
 
 	public static void MostraFuncionario() {
-		System.out.println("Lista de funcionarios terceirizados: \n");
+		System.out.println("Lista de funcionarios Administrativos: \n");
 		
 		for(RegistraFuncionarioAdm rfa : listaFunAdm) {
 			System.out.println("Funcionario registrado com sucesso!");
@@ -204,12 +204,37 @@ public class RegistraFuncionarioAdm extends Pessoas implements Funcionarios, Fad
 			System.out.println("Gratificação do funcionario: " + rfa.getNome() + " " + rfa.getGratificacao()+"%" + " + " + rfa.getGratificacao2()+"%");
 	}
 	}
+	public static void excluiFun() throws NumberFormatException, IOException {
+		int contador=0;
+		while(contador == 0) {
+
+				for(RegistraFuncionarioAdm rfa : listaFunAdm) {
+					System.out.println("=========Lista de funcionarios cadastrados=========");
+					System.out.println("Nome do funcionario:"+ rfa.getNome() + " Profissão: " + rfa.servico + " ID: " + rfa.getId() );
+					System.out.print("\n");
+					
+				}
+				System.out.println("Digite o id do funcionario que deseja remover da lista de cadastro");
+				int id = Integer.parseInt(bfr.readLine());
+				listaFunAdm.remove(id);
+				
+				
+			System.out.println("Digite 2, caso queira voltar ao menu");
+			int teclado = Integer.parseInt(bfr.readLine());
+			if(teclado == 2) {
+				contador++;
+			}
+		}
+		
+	}
+
 	public void mostraOpcao() throws IOException {
 		int contador=0;
 		while(contador == 0) {
 			System.out.println("|Digite 1, caso queira cadastrar um Funcionario administrativos       |");
 			System.out.println("|Digite 2, caso visualizar os Funcionarios administrativos cadastrados|");		
-			System.out.println("|Digite 3, caso queira voltar ao menu                                 |");
+			System.out.println("|Digite 3, caso queira Excluir um funcionario                         |");
+			System.out.println("|Digite 4, caso queira voltar ao menu                                 |");
 			int tecladoFun = Integer.parseInt(bfr.readLine());
 			if(tecladoFun==1) {
 				RegistraFuncionarioAdm.cadastraFunAdm();
@@ -230,6 +255,10 @@ public class RegistraFuncionarioAdm extends Pessoas implements Funcionarios, Fad
 				}
 			}
 			if(tecladoFun ==3) {
+				RegistraFuncionarioAdm.excluiFun();
+				contador++;
+			}
+			if(tecladoFun ==4) {
 				contador++;
 				System.out.println("\n\n");
 			}

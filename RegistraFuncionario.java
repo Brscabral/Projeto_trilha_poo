@@ -99,10 +99,34 @@ static ArrayList<RegistraFuncionario> listaFun = new ArrayList<RegistraFuncionar
 		funcionario.setSexo(sexoFun);
 		funcionario.setSalario(salarioFun);
 		funcionario.setHorario(horario);
-		funcionario.SetId(contador+1);
+		funcionario.SetId(contador);
 		funcionario.setServico(servico);
 		funcionario.setTurno(turno);
 		listaFun.add(funcionario);
+		
+	}
+	
+	public static void excluiFun() throws NumberFormatException, IOException {
+		int contador=0;
+		while(contador == 0) {
+
+				for(RegistraFuncionario rf : listaFun) {
+					System.out.println("=========Lista de funcionarios cadastrados=========");
+					System.out.println("Nome do funcionario:"+ rf.getNome() + " Profissão: " + rf.servico  + " ID: " + rf.getId() );
+					System.out.print("\n");
+					
+				}
+				System.out.println("Digite o id do funcionario que deseja remover da lista de cadastro");
+				int id = Integer.parseInt(bfr.readLine());
+				listaFun.remove(id);
+				
+				
+			System.out.println("Digite 2, caso queira voltar ao menu");
+			int teclado = Integer.parseInt(bfr.readLine());
+			if(teclado == 2) {
+				contador++;
+			}
+		}
 		
 	}
 
@@ -128,7 +152,7 @@ static ArrayList<RegistraFuncionario> listaFun = new ArrayList<RegistraFuncionar
 		while(contador == 0) {
 			System.out.println("|Digite 1, caso queira cadastrar um Funcionario terceirizado        |");
 			System.out.println("|Digite 2, caso visualizar os Funcionarios terceirizados cadastrados|");		
-			System.out.println("|Digite 3, caso queira voltar ao menu                               |");
+			System.out.println("|Digite 3, caso queira excluir um funcionario terceirizado          |");
 			int tecladoFun = Integer.parseInt(bfr.readLine());
 			if(tecladoFun==1) {
 				RegistraFuncionario.CadastraFuncionario();
@@ -148,6 +172,12 @@ static ArrayList<RegistraFuncionario> listaFun = new ArrayList<RegistraFuncionar
 					contador++;
 				}
 			}
+			if(tecladoFun ==4) {
+				RegistraFuncionario.excluiFun();
+				contador++;
+				System.out.println("\n\n");
+			}
+			
 			if(tecladoFun ==3) {
 				contador++;
 				System.out.println("\n\n");

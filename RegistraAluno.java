@@ -98,8 +98,32 @@ public static void cadastraAluno() throws IOException {
 	alunoCad.setNotaGeo(notaGeo);
 	alunoCad.setNotaMat(notaMat);
 	alunoCad.setNotaPort(notaPort);
-	alunoCad.SetId(contador+1);
+	alunoCad.SetId(contador);
 	lista.add(alunoCad);
+}
+
+public static void excluiAluno() throws NumberFormatException, IOException {
+	int contador=0;
+	while(contador == 0) {
+
+			for(RegistraAluno ra : lista) {
+				System.out.println("=========Lista de funcionarios cadastrados=========");
+				System.out.println("Nome do Aluno:"+ ra.getNome() + " Média: " + ra.getMedia() + " ID: " + ra.getIdAluno() );
+				System.out.print("\n");
+				
+			}
+			System.out.println("Digite o id do funcionario que deseja remover da lista de cadastro");
+			int id = Integer.parseInt(bfr.readLine());
+			lista.remove(id);
+			
+			
+		System.out.println("Digite 2, caso queira voltar ao menu");
+		int teclado = Integer.parseInt(bfr.readLine());
+		if(teclado == 2) {
+			contador++;
+		}
+	}
+	
 }
 
 public static void mostraAluno() {
@@ -122,7 +146,8 @@ public void mostraOpcao() throws IOException {
 	while(contador == 0) {
 		System.out.println("|Digite 1, caso queira cadastrar um aluno       |");
 		System.out.println("|Digite 2, caso visualizar os alunos cadastrados|");		
-		System.out.println("|Digite 3, caso queira voltar ao menu           |");
+		System.out.println("|Digite 3, caso queira excluir um aluno         |");
+		System.out.println("|Digite 4, caso queira voltar ao menu           |");
 		int tecladoAluno = Integer.parseInt(bfr.readLine());
 		if(tecladoAluno==1) {
 			RegistraAluno.cadastraAluno();
@@ -143,9 +168,15 @@ public void mostraOpcao() throws IOException {
 			}
 		}
 		if(tecladoAluno ==3) {
+			RegistraAluno.excluiAluno();
 			contador++;
 			System.out.println("\n\n");
 		}
+		if(tecladoAluno ==4) {
+			contador++;
+			System.out.println("\n\n");
+		}
+		
 	}
 }
 
