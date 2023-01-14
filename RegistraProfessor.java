@@ -5,8 +5,8 @@ public class RegistraProfessor extends Pessoas {
 private String matricula;
 private double salario;
 
-BufferedReader bfr = new BufferedReader(new InputStreamReader(System.in));
-ArrayList<RegistraProfessor> listaProf = new ArrayList<RegistraProfessor>();
+static BufferedReader bfr = new BufferedReader(new InputStreamReader(System.in));
+static ArrayList<RegistraProfessor> listaProf = new ArrayList<RegistraProfessor>();
 public String getMatricula() {
 	return matricula;
 }
@@ -20,7 +20,7 @@ public void setSalario(double salario) {
 	this.salario = salario;
 }
 
-public void cadastraProfessor() throws IOException {
+public static void cadastraProfessor() throws IOException {
 	
 	RegistraProfessor professores = new RegistraProfessor();
 	
@@ -51,12 +51,12 @@ public void cadastraProfessor() throws IOException {
 	listaProf.add(professores);
 }
 
-public void mostraProfessores(){
+public static void mostraProfessores(){
 	
 System.out.println("Lista de professores:");
 	
 	for(int i=0; i<listaProf.size();i++) {
-		System.out.println("Professor " + RegistraAluno.getContador()+ "Registrado com sucesso!");
+		//System.out.println("Professor " + RegistraAluno.getContador()+ "Registrado com sucesso!");
 		System.out.println("Nome do professor:"+ listaProf.get(i).getNome());
 		System.out.println("Sexo do aluno:"+ listaProf.get(i).getSexo());
 		System.out.println("Endereço do aluno: " + listaProf.get(i).getEndereco());
@@ -66,8 +66,42 @@ System.out.println("Lista de professores:");
 		System.out.println(" ");
 
 }
+
+
 	
 
+}
+
+public void mostraOpcao() throws IOException {
+	int contador=0;
+	while(contador == 0) {
+		System.out.println("|Digite 1, caso queira cadastrar um professor        |");
+		System.out.println("|Digite 2, caso visualizar os professores cadastrados|");		
+		System.out.println("|Digite 3, caso queira voltar ao menu                |");
+		int tecladoProf = Integer.parseInt(bfr.readLine());
+		if(tecladoProf==1) {
+			RegistraProfessor.cadastraProfessor();
+			System.out.println("Digite 2, caso queira voltar ao menu");
+			int teclado = Integer.parseInt(bfr.readLine());
+			if(teclado ==2) {
+				contador++;
+				break;
+			}
+		
+		}
+		if(tecladoProf == 2){
+			RegistraProfessor.mostraProfessores();
+			System.out.println("Digite 2, caso queira voltar ao menu");
+			int teclado = Integer.parseInt(bfr.readLine());
+			if(teclado == 2) {
+				contador++;
+			}
+		}
+		if(tecladoProf ==3) {
+			contador++;
+			System.out.println("\n\n");
+		}
+	}
 }
 }
 	
